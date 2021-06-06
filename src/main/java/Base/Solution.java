@@ -6,6 +6,7 @@ package Base;
  */
 
 
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Solution {
@@ -17,6 +18,17 @@ public class Solution {
         double principal = principalValue();
         double rate = interestRate();
         int years = numberYears();
+
+        double annualRate = ((principal * (1 + ((rate / 100) * years)))) * 100;
+
+        int roundRate = (int) Math.ceil(annualRate);
+
+        double  rateFinal = roundRate / 100.0;
+
+        System.out.print("After "+years+" years at "+rate+"%, the investment will be worth $");
+
+        DecimalFormat format = new DecimalFormat("0.00");
+        System.out.print(format.format(rateFinal));
 
     }
 
@@ -31,19 +43,19 @@ public class Solution {
     private static double interestRate(){
 
         System.out.print("Enter the rate of interest: ");
-        String interestInput = in.nextLine();
-        return Integer.parseInt(interestInput);
+        double interestInput = in.nextDouble();
+
+        return interestInput;
 
     }
 
     private static int numberYears(){
 
-        System.out.println("Enter the number of years: ");
-        String inputYears = in.nextLine();
-        return Integer.parseInt(inputYears);
+        System.out.print("Enter the number of years: ");
+        int years = in.nextInt();
+
+        return years;
 
     }
-
-
 
 }
